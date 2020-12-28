@@ -93,14 +93,5 @@ ROBOTSTXT_OBEY = True
 
 ITEM_PIPELINES = {
     'scrap.pipelines.ScrapySpiderPipeline': 100,
-    # 'scrap.pipelines.SaveQuotesPipeline': 200,
 }
 
-DATABASE = {
-    'drivername': 'postgres',
-    'host': 'localhost',
-    'port': '5432',
-    'username': 'postgres',
-    'password': 'nastya55',
-    'database': 'car'
-}

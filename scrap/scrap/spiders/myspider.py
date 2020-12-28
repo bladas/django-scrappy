@@ -16,23 +16,14 @@ class MyspiderSpider(scrapy.Spider):
         all_brands = response.css('a.item-brands')
         for brand in all_brands:
             brand_url = brand.css('::attr(href)').extract()[0]
-            # brand_name = brand.css('::attr(title)').extract()[0]
-            # category_item = CarItem()
-            # category_item['category_name'] = brand_name
-            # category_item['category_url'] = brand_url
-            # yield category_item
             yield scrapy.Request(brand_url, callback=self.parse_models)
 
     def parse_models(self, response):
-        # pass
-        # # yield
         cars = response.css('a.address::attr(href)').extract()
         for car_url in cars:
             yield scrapy.Request(car_url,callback=self.parse_car)
         next_page = response.css('a.page-link.js-next::attr(href)').extract_first()
-        print(next_page)
         if 'https' in next_page:
-            # print(next_page[0])
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page,callback=self.parse_models)
 
@@ -47,5 +38,4 @@ class MyspiderSpider(scrapy.Spider):
             car['car_url'] = response.url
             car['car'] = car_name
             car['price'] = price
-            # print(self.count)
             yield car

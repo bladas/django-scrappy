@@ -7,12 +7,6 @@
 
 import scrapy
 
-
-# class ScrapItem(scrapy.Item):
-#     # define the fields for your item here like:
-#     # name = scrapy.Field()
-#     pass
-
 class CarItem(scrapy.Item):
     car = scrapy.Field()
     price = scrapy.Field()

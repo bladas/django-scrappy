@@ -16,10 +16,8 @@ from connect.models import Car, CarModel, Brand
 
 
 class ScrapySpiderPipeline(object):
-    # list_of_cars = []
     def process_item(self, item, spider):
         if spider.name == "myspider":
-
             brand, _ = Brand.objects.get_or_create(name=item.get('brand'))
             car_model, _ = CarModel.objects.get_or_create(car_model_name=item.get('car_model'), brand=brand)
             CarModel.objects.get_or_create(car_model=car_model, car_url = item.get('car_url'),price = item.get('price'), car_name = item.get('car'))
